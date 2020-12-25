@@ -1,0 +1,113 @@
+﻿@model IEnumerable<lanews.Models.Article>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModificationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeadLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubHeading)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReadCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeaturedImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeaturedImageCaption)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FeaturedImageAlt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WhereLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModificationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HeadLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubHeading)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lead)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReadCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeaturedImageUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeaturedImageCaption)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FeaturedImageAlt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhereLine)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor.FisrtName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

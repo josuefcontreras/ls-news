@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+
+@if (User.IsInRole("Administrator"))
+{
+    <li class="nav-item"><a class="dropdown-item" href="#"><i class="fa fa-landmark"></i>Dashboard</a></li>
+}
+

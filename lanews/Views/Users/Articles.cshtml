@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<lanews.Models.Article>
+@inject UserManager<User> UserManager
+@{
+    ViewData["Title"] = "My articles";
+    var loggedUser = await UserManager.FindByNameAsync(User.Identity.Name);
+
+}
+
+<h1>My articles</h1>
+
+<p>
+    <a asp-controller="Articles" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Feature Image
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeadLine)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReadCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            var routeParams = new Dictionary<string, string> {
+                        { "controller", "Articles" },
+                        { "Action", "Details" },
+                        {"id", item.Id.ToString()}
+                    };
+        <tr>
+            <td>
+                <div class="card" style="width: 8rem;">
+                    <a asp-route="default" asp-all-route-data="routeParams">
+                        <img src="@Html.DisplayFor(modelItem => item.FeaturedImageUrl)" class="card-img-top" alt="@Html.DisplayFor(modelItem => item.FeaturedImageAlt)">
+                    </a>
+                </div>
+            </td>
+            <td>
+                <a asp-route="default" asp-all-route-data="routeParams">
+                    @Html.DisplayFor(modelItem => item.HeadLine)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReadCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor.FisrtName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.StatusName)
+            </td>
+            <td>
+                <a asp-controller="Articles" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-controller="Articles" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-controller="Articles" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+
+@if (User.IsInRole("Editor"))
+{
+    <li class="nav-item"><a class="dropdown-item" asp-controller="Users" asp-action="Articles" ><i class="fa fa-list-alt"></i>My articles</a></li>
+    <li class="nav-item"><a class="dropdown-item" asp-controller="Articles" asp-action="Create"><i class="fa fa-edit"></i>Write</a></li>
+}
+
