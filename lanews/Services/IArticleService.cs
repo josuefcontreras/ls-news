@@ -8,6 +8,9 @@ namespace lanews.Services
 {
     public interface IArticleService
     {
-        IEnumerable<Article> GetArticlesByAuthorId(Guid authorId);
+        IEnumerable<Article> GetArticlesByAuthorId(string authorId);
+        IEnumerable<Article> GetArticlesByStatus(string status);
+        Task<IEnumerable<Article>> GetArticlesByCategoryName(string categoryName);
+        Task<int> CreateArticle(Article article);
     }
 }

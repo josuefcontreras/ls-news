@@ -71,9 +71,7 @@ namespace lanews
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "firstLevelResource",
-                    pattern: "{controller}/{id}/{action?}/{resourceId?}");
+                
                 endpoints.MapRazorPages();
             });
         }

@@ -21,12 +21,11 @@ namespace lanews.Controllers
         private readonly IUserService _userService;
         private readonly RoleManager<Role> _roleManager;
         private readonly UserManager<User> _userManager;
-        private readonly IArticleService _articleService;
+
 
         public UsersController (
             ApplicationDbContext context, 
             IUserService userService,
-            IArticleService articleService,
             RoleManager<Role> roleManager,
             UserManager<User> userManager
             )
@@ -35,7 +34,6 @@ namespace lanews.Controllers
             _userService = userService;
             _roleManager = roleManager;
             _userManager = userManager;
-            _articleService = articleService;
         }
 
         // GET: Users
@@ -174,17 +172,6 @@ namespace lanews.Controllers
         private bool UserExists(Guid id)
         {
             return _context.Users.Any(e => e.Id == id);
-        }
-        [Authorize(Roles = "Editor")]
-        public async Task<IActionResult> Articles()
-        {
-            if (User.IsInRole("Editor"))
-            {
-                var loggedUser = await _userManager.FindByNameAsync(User.Identity.Name);
-                var articles =  _articleService.GetArticlesByAuthorId(loggedUser.Id);
-                return View(articles);
-            }
-            return RedirectToAction("Index", "Home");
         }
     }
 }

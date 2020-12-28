@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Article>
+
+<section class="container">
+    <h2>@ViewBag.CategoryName</h2>
+    <div class="row">
+        
+        @foreach (var article in Model)
+        {
+            <article class="col-sm-12 col-md-6 col-lg-4">
+                <div class="top-news">
+                    <img src="@article.FeaturedImageUrl" alt="@article.FeaturedImageAlt" />
+                    <section class="top-news-content">
+                        <h3><a asp-controller="Articles" asp-action="Details" asp-route-id="@article.Id">@article.HeadLine</a></h3>
+                        <time datetime="@article.CreationDate.ToLongDateString()">@article.CreationDate.ToLongDateString()</time>
+                        <ul class="tags">
+                            <li>Politics</li>
+                            <li>science</li>
+                        </ul>
+                    </section>
+                </div>
+            </article>
+        }
+    </div>
+</section>

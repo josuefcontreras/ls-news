@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var controller = ViewContext.RouteData.Values["controller"];
+    var action = ViewContext.RouteData.Values["action"]; ;
+}
+
+@if (controller != null && action !=null && controller.ToString() == "Home" && action.ToString() == "Index")
+{
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="title">
+                Most <span class="vibrant">Vibrant</span> Newspaper in L.A.
+            </h1>
+            <h2>Politics | Business | Health | Entertainment | Sports</h2>
+        </div>
+    </section>
+}

@@ -1,0 +1,20 @@
+﻿@inject ApplicationDbContext _context
+
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark cat-navbar justify-content-end">
+    <div class="container justify-content-center">
+        <button class="navbar-toggler p-0" type="button" data-toggle="collapse" data-target=".cat-list" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between cat-list">
+            <ul class="navbar-nav flex-grow-1">
+                @foreach (var category in _context.Categories.ToList())
+                {
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Articles" asp-action="Categories" asp-route-id="@category.CategoryName">@category.CategoryName</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>

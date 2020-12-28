@@ -1,9 +1,20 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - lanews</title>
+    <meta name="keywords" content="Politics, Business, Entertainment, Sports, news, la news" />
+    <meta name="description"
+          content="Most vibrant newspaper in L.A. Find the latest news about politics, business, entertaintment, sports and more" />
+    <meta property="og:image" content="" />
+    <meta property="og:description"
+          content="Most vibrant newspaper in L.A. Find the latest news about politics, business, entertaintment, sports and more" />
+    <meta property="og:title" content="L.A. News" />
+    <meta name="author" content="Josue F. Contreras" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png" />
+    <title>@ViewData["Title"] - LA NEWS</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <environment include="Development">
@@ -12,18 +23,20 @@
     <environment exclude="Development">
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
     </environment>
+    @await RenderSectionAsync("CustomStyle", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <a id="top"></a>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LA News</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".main-nav" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between main-navbar">
+                    <ul class="navbar-nav flex-grow-1 page-list">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -38,18 +51,15 @@
                 </div>
             </div>
         </nav>
+        <partial name="_categoryNav" />
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <partial name="_homeHero" />
+    <section class="container">
+        <main role="main" class="py-3">
             @RenderBody()
         </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - lanews - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+    </section>
+    <partial name="_Footer"/>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

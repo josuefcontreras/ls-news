@@ -1,102 +1,94 @@
 ﻿@model lanews.Models.Article
-
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
+ 
 @{
     ViewData["Title"] = "Details";
+    bool IsOwner = User.Identity.IsAuthenticated && UserManager.GetUserId(User) == Model.AutorId.ToString();
 }
 
-<h1>Details</h1>
+@section CustomStyle {
+    <link href="~/css/article-details.css" rel="stylesheet" />
+}
 
-<div>
-    <h4>Article</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreationDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ModificationDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ModificationDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HeadLine)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.HeadLine)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SubHeading)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SubHeading)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Lead)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Lead)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReadCount)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReadCount)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FeaturedImageUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FeaturedImageUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FeaturedImageCaption)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FeaturedImageCaption)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FeaturedImageAlt)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FeaturedImageAlt)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.WhereLine)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.WhereLine)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Autor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Autor.FisrtName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category.CategoryName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<article class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-5 featuredImage">
+            <img class="" src="@Model.FeaturedImageUrl" alt="@Model.FeaturedImageAlt" />
+        </div>
+        <div class="col-sm-12 col-md-7 order-first">
+            <header>
+                <h1>
+                    @Model.HeadLine
+                    @if (IsOwner)
+                    {
+                        <a asp-controller="Articles" asp-action="Edit" asp-route-id="@Model.Id">
+                            <i class="fa fa-pencil-alt" style="color:lightskyblue; font-size:.5em" title="Edit this post"></i>
+                        </a>
+                    }
+                </h1>
+                <span class="text-muted" style="font-weight: 100">
+                    Last modified:
+                    <time class="" style="display:inline-block" datetime="@Model.ModificationDate.ToString("dddd, dd MMMM yyyy - hh:mm:ss tt")">
+                        @Model.ModificationDate.ToString("dddd, dd MMMM yyyy - hh:mm:ss tt")
+                    </time>
+                </span>
+                <p class="m-0 text-muted" style="font-weight: 100">
+                    <i class="fa fa-user-circle"></i>
+                    <span>@Model.Autor.LastName, @Model.Autor.FisrtName</span>
+                </p>
+            </header>
+            <section style="text-align: justify">
+                <span class="whereline">@Model.WhereLine - </span>
+                @Model.Body  
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                    Ut pellentesque at neque blandit varius. Pellentesque pulvinar varius sagittis. 
+                    Donec sodales efficitur leo, vitae euismod augue mattis non. Duis mollis vel tortor ut elementum.
+                    Aenean ut mi risus. Proin eu venenatis libero. Sed venenatis ut diam at auctor. 
+                    Suspendisse sapien orci, lacinia eu urna eu, interdum pulvinar elit.
+                    In mattis finibus erat sed porttitor.
+                </p>
+                <p>
+                    Maecenas efficitur ligula imperdiet, posuere dui et, aliquet justo.
+                    Phasellus quis lacus enim. Maecenas blandit consequat placerat. Etiam at neque orci. 
+                    Aenean at rutrum magna. Etiam vitae elit dignissim, pulvinar dui a, condimentum est. 
+                    Morbi lacinia rutrum eros, eget mollis augue sodales luctus. 
+                    Sed mi magna, viverra sed efficitur vel, faucibus ac leo. Class aptent taciti sociosqu 
+                    ad litora torquent per conubia nostra, per inceptos himenaeos.
+                </p>
+                <p>
+                    Suspendisse blandit vel arcu ac consequat. Sed luctus odio nunc, ut fringilla mi sollicitudin in. 
+                    Sed congue nunc ac felis tempor, quis faucibus velit rhoncus. Etiam in placerat velit. 
+                    Donec lorem tortor, sodales ut massa sed, elementum imperdiet justo. 
+                    Vestibulum vitae mauris non erat euismod congue. In sed massa odio. Nullam posuere ligula justo, 
+                    quis maximus ligula elementum quis. Quisque sed lacus non ligula consequat varius a id mauris. 
+                    Fusce bibendum, ante nec fringilla facilisis, dui tellus mattis tortor, at ullamcorper augue nibh vel ante. 
+                    Maecenas tortor metus, vestibulum et gravida a, sollicitudin quis velit. Sed sit amet finibus sem. 
+                    Vestibulum pulvinar orci euismod justo ultricies gravida.
+                </p>
+                <p>
+                    Quisque tristique nulla ac magna volutpat, at tempus velit suscipit. 
+                    Nunc quis enim eget ligula mattis euismod. Nullam dignissim maximus dapibus. 
+                    Proin tellus leo, pretium nec orci id, tincidunt sagittis turpis. Donec leo enim, 
+                    malesuada eget dui nec, eleifend pulvinar nibh. Aliquam aliquet nisl lectus, quis 
+                    feugiat nulla ultrices in. Cras aliquam tellus ex, id porta neque tempor quis. 
+                    Ut condimentum dui erat, non tempor augue lobortis nec. Aliquam lobortis feugiat 
+                    ante vitae dignissim. Donec mollis, eros placerat ornare tristique, magna dolor 
+                    tincidunt libero, pulvinar convallis nisl sapien a mauris. Quisque dolor massa, 
+                    commodo ut faucibus vitae, pulvinar volutpat lectus. Cras eget nisl aliquet, 
+                    laoreet mauris eu, luctus augue.
+                </p>
+                <p>    
+                    In id ex lacus. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                    per inceptos himenaeos. Nam interdum mi non erat fermentum dictum. Etiam nunc quam, 
+                    tincidunt eu nibh ac, mollis tincidunt lacus. Mauris vitae vehicula ipsum. In hac
+                    habitasse platea dictumst. Fusce eget arcu consectetur, consequat metus eu, suscipit urna.
+                    Morbi dictum vulputate ipsum, vel faucibus augue. Nullam consequat quam vitae eleifend venenatis. 
+                    Sed vitae lorem nunc. Praesent varius molestie orci, at malesuada orci. Nunc laoreet ornare odio, 
+                    nec varius justo pharetra eu. Suspendisse nec facilisis lacus. Sed eget pretium erat.
+                </p>
+            </section>
+        </div>
+    </div>
+</article>

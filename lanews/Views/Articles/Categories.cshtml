@@ -1,0 +1,7 @@
+﻿@model IEnumerable<lanews.Models.Article>
+
+@{
+    ViewData["Title"] = ViewBag.category;
+}
+
+@await Component.InvokeAsync("ArticlesFlexbox", new { categories = Model, categoryName = @ViewBag.category })

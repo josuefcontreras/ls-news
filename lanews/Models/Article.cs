@@ -22,10 +22,10 @@ namespace lanews.Models
         public Guid Id { get; set; }
         [Display(Name = "Status id")]
         public int StatusId { get; set; }
-        [Column(TypeName = "date")]
+        [Column(TypeName = "DateTime")]
         [Display(Name = "Creation date")]
         public DateTime CreationDate { get; set; }
-        [Column("modificationDate", TypeName = "date")]
+        [Column("modificationDate", TypeName = "DateTime")]
         [Display(Name = "Last modified")]
         public DateTime ModificationDate { get; set; }
         [Required]

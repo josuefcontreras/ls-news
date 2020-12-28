@@ -1,0 +1,15 @@
+﻿/*.article-wrapper{
+    margin: 0px auto;
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+}*/
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+    .featuredImage img {
+        position: sticky;
+        top: 150px;
+    }
+}
