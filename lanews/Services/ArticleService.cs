@@ -23,7 +23,6 @@ namespace lanews.Services
             _context.Add(article);
             return await _context.SaveChangesAsync();
         }
-
         public  IEnumerable<Article> GetArticlesByAuthorId(string authorId)
         {
            return  _context.Articles.Include(a => a.Autor).Include(a => a.Category).Include(a => a.Status).Where(article => article.AutorId.ToString() == authorId);
@@ -31,7 +30,7 @@ namespace lanews.Services
 
         public async Task<IEnumerable<Article>> GetArticlesByCategoryName(string categoryName)
         {
-            return await _context.Articles.Where(a => a.Category.CategoryName == categoryName).ToListAsync();
+            return await _context.Articles.Where(a => a.Category.CategoryName == categoryName && a.Status.StatusName == "published").ToListAsync();
         }
 
         public IEnumerable<Article> GetArticlesByStatus(string status)

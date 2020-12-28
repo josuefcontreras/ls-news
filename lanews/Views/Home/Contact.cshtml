@@ -4,5 +4,117 @@
 @{
     ViewData["Title"] = "Contact";
 }
-
+@section CustomStyle {
+    <link href="~/css/contact.css" rel="stylesheet" />
+}
 <h1>Contact page</h1>
+<div class="row">
+    <div class="col-sm-12 col-md-6">
+        <section class="contact-form">
+            <p>
+                Please, use  the form below to communicate with us. We'll get back to
+                you ASAP
+            </p>
+            <form asp-route-returnUrl="@Url.Action("Index", "Home", new {  })">
+                <div class="form-row">
+                    <label for="fullName">Name</label>
+                    <input class="text-box"
+                           type="text"
+                           name="fullName"
+                           id="fullName"
+                           maxlength="30"
+                           required
+                           title="Enter your full name" />
+                </div>
+                <div class="form-row">
+                    <label for="email">Email</label>
+                    <input class="text-box"
+                           type="email"
+                           name="email"
+                           id="email"
+                           required
+                           title="Enter your email" />
+                </div>
+                <div class="form-row">
+                    <label for="phone">Phone number</label>
+                    <input class="text-box"
+                           type="text"
+                           name="phone"
+                           id="phone"
+                           required
+                           title="Enter your phone number" />
+                </div>
+                <div class="form-row">
+                    <label for="messageSubject">Subject</label>
+                    <input class="text-box"
+                           type="text"
+                           name="messageSubject"
+                           id="messageSubject"
+                           maxlength="30"
+                           required
+                           title="Enter your full name" />
+                </div>
+                <div class="form-row">
+                    <label for="messageBody">Message body</label>
+                    <textarea class="w-100 p-5 text-box"
+                              name="messageBody"
+                              id="messageBody"
+                              cols="30"
+                              rows="5"></textarea>
+                </div>
+                <div class="form-row">
+                    <input class="btn primary"
+                           type="submit"
+                           value="Send message"
+                           id="submitButton" />
+                </div>
+            </form>
+        </section>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <section class="location-section">
+            <address itemscope itemtype="https://schema.org/LocalBusiness">
+                <h2 itemprop="name">L.A. News</h2>
+                <div>
+                    Email:
+                    <span itemprop="email"><a href="mailto:info@lanews.com">info@lanews.com</a></span>
+                </div>
+                <div>
+                    Phone:
+                    <span itemprop="telephone"><a href="tel:+8092201111">8092201111</a></span>
+                </div>
+
+                <meta itemprop="openingHours"
+                      style="display: none"
+                      datetime="Mo,Tu,We,Th,Fr,Sa,Su 08:00-18:00" />
+                <div itemtype="http://schema.org/GeoCoordinates"
+                     itemscope=""
+                     itemprop="geo">
+                    <meta itemprop="latitude" content="34.0601933" />
+                    <meta itemprop="longitude" content="-118.252835" />
+                </div>
+                <div itemtype="http://schema.org/PostalAddress"
+                     itemscope=""
+                     itemprop="address">
+                    <div itemprop="streetAddress">123 street</div>
+                    <div>
+                        <span itemprop="addressLocality">California</span>,
+                        <span itemprop="addressRegion">LA</span>
+                        <span itemprop="postalCode">12345</span>
+                    </div>
+                </div>
+            </address>
+            <div id="map" class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211643.14453339236!2d-118.44982014456075!3d34.020158296817165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c7abc32d7c13%3A0xcaa2d54726dd8b64!2sLA%20Downtown%20News!5e0!3m2!1sen!2sdo!4v1604629896583!5m2!1sen!2sdo"
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        style="border: 0"
+                        allowfullscreen=""
+                        aria-hidden="false"
+                        tabindex="0"></iframe>
+            </div>
+        </section>
+    </div>
+</div>
+

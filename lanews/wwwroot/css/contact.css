@@ -1,0 +1,62 @@
+﻿.form-row {
+    margin-bottom: 1.5rem;
+}
+
+.text-box {
+    padding: 8px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid rgb(204, 5, 5);
+    background: #efefef;
+}
+
+.btn {
+    padding: 15px 20px;
+    border: none;
+    box-shadow: darkslateblue;
+    cursor: pointer;
+}
+
+    .btn.primary {
+        background-color: rgb(204, 5, 5);
+        box-shadow: 2px 16px -12px rgb(204, 5, 5);
+        color: white;
+    }
+
+/* Set the size of the div element that contains the map */
+#map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    /* The width is the width of the web page */
+}
+
+.location-section {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+    .location-section address {
+        order: 1;
+    }
+
+textarea[name="messageBody"] {
+    resize: none;
+}
+/* medium screens */
+@media (min-width: 720px) {
+    .content-wrapper {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+
+    .contact-form {
+        flex: 0 49%;
+    }
+
+    .location-section {
+        flex: 0 49%;
+    }
+}
