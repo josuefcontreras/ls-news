@@ -26,35 +26,6 @@ namespace lanews.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Article>(entity =>
             {
-                entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
-
-                entity.Property(e => e.Body).IsUnicode(false);
-
-                entity.Property(e => e.CreationDate).HasDefaultValueSql("(getutcdate())");
-
-                entity.Property(e => e.FeaturedImageAlt)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('Default feature image')");
-
-                entity.Property(e => e.FeaturedImageCaption)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('Default feature image')");
-
-                entity.Property(e => e.FeaturedImageUrl)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('~/img/default-article-image.png')");
-
-                entity.Property(e => e.HeadLine).IsUnicode(false);
-
-                entity.Property(e => e.Lead).IsUnicode(false);
-
-                entity.Property(e => e.ModificationDate).HasDefaultValueSql("(getutcdate())");
-
-                entity.Property(e => e.ReadCount).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.SubHeading).IsUnicode(false);
-
-                entity.Property(e => e.WhereLine).IsUnicode(false);
 
                 entity.HasOne(d => d.Autor)
                     .WithMany(p => p.Articles)
@@ -71,12 +42,7 @@ namespace lanews.Data
                     .HasForeignKey(d => d.StatusId)
                     .HasConstraintName("FK__ARTICLES__Status__6C190EBB");
             });
-            modelBuilder.Entity<ArticleStatus>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.StatusName).IsUnicode(false);
-            });
             modelBuilder.Entity<ArticleTag>(entity =>
             {
                 entity.HasKey(e => new { e.ArticleId, e.TagId })
@@ -92,12 +58,7 @@ namespace lanews.Data
                     .HasForeignKey(d => d.TagId)
                     .HasConstraintName("FK__ARTICLE_T__TagId__7B5B524B");
             });
-            modelBuilder.Entity<Category>(entity =>
-            {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.CategoryName).IsUnicode(false);
-            });
             modelBuilder.Entity<RelatedArticle>(entity =>
             {
                 entity.HasKey(e => new { e.OriginaleArticleId, e.RelatedArticleId })
@@ -115,10 +76,7 @@ namespace lanews.Data
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__RELATED_A__Relat__74AE54BC");
             });
-            modelBuilder.Entity<Tag>(entity =>
-            {
-                entity.Property(e => e.TagName).IsUnicode(false);
-            });
+
             base.OnModelCreating(modelBuilder);
         }
     }

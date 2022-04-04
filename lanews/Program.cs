@@ -26,8 +26,9 @@ namespace lanews
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
+
                     var applicationDbContext = services.GetRequiredService<ApplicationDbContext>();
-                    
+
                     await applicationDbContext.Database.MigrateAsync();
 
                     var userManager = services.GetRequiredService<UserManager<User>>();
