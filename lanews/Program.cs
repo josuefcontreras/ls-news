@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Identity;
 using lanews.Models;
 using lanews.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace lanews
 {
@@ -25,12 +26,14 @@ namespace lanews
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
+                    var applicationDbContext = services.GetRequiredService<ApplicationDbContext>();
+                    
+                    await applicationDbContext.Database.MigrateAsync();
 
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
                     await IdentityContextSeed.SeedAsync(userManager, roleManager);
 
-                    var applicationDbContext = services.GetRequiredService<ApplicationDbContext>();
                     await ApplicationContextSeed.SeedAsync(applicationDbContext, loggerFactory);
                 }
                 catch (Exception ex)

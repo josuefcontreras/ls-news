@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lanews.Data;
 
-namespace lanews.Migrations
+namespace lanews.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20201222132241_InitialMigration")]
+    [Migration("20220404163653_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,7 +146,7 @@ namespace lanews.Migrations
 
                     b.Property<DateTime>("CreationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
+                        .HasColumnType("DateTime")
                         .HasDefaultValueSql("(getutcdate())");
 
                     b.Property<string>("FeaturedImageAlt")
@@ -188,7 +188,7 @@ namespace lanews.Migrations
 
                     b.Property<DateTime>("ModificationDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("date")
+                        .HasColumnType("DateTime")
                         .HasColumnName("modificationDate")
                         .HasDefaultValueSql("(getutcdate())");
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace lanews.Migrations
+namespace lanews.Data.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -202,8 +202,8 @@ namespace lanews.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "(newid())"),
                     StatusId = table.Column<int>(type: "int", nullable: false),
-                    CreationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "(getutcdate())"),
-                    modificationDate = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "(getutcdate())"),
+                    CreationDate = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "(getutcdate())"),
+                    modificationDate = table.Column<DateTime>(type: "DateTime", nullable: false, defaultValueSql: "(getutcdate())"),
                     HeadLine = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
                     SubHeading = table.Column<string>(type: "varchar(256)", unicode: false, maxLength: 256, nullable: false),
                     Lead = table.Column<string>(type: "varchar(512)", unicode: false, maxLength: 512, nullable: false),
